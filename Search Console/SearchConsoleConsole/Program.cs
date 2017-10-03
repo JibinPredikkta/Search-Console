@@ -29,7 +29,7 @@ namespace SearchConsoleConsole
             {
                 foreach (Domain domain in db.Domains.ToList())
                 {
-                    if (domain.Id == 2 || domain.Id == 1)
+                    if (domain.Id == 2)
                     {
                         continue;
                     }
@@ -129,7 +129,6 @@ namespace SearchConsoleConsole
         /// <returns></returns>
         public static WebmastersService AuthenticateOauth(string clientId, string clientSecret, string userName)
         {
-
             string[] scopes = new string[] { WebmastersService.Scope.Webmasters };     // View analytics data
 
             try
