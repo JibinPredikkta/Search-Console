@@ -7,6 +7,7 @@ using System.Data.Entity;
 using SearchConsoleDAL.Context;
 using SearchConsoleDAL.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 using System.Data;
 
 namespace SearchConsoleAPI.Service
@@ -483,7 +484,8 @@ namespace SearchConsoleAPI.Service
             List<int> f = new List<int>();
             try
             {
-                SqlConnection thisConnection = new SqlConnection(@"Data Source=.\;Initial Catalog=SearchConsole;Integrated Security=True");
+                SqlConnection thisConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["SearchConsoleContext"].ConnectionString);
+                    //new SqlConnection(@"Data Source=.\;Initial Catalog=SearchConsole;Integrated Security=True");
                 //thisConnection.Open();
                 password = Users.Encrypt(password);
                 string sqlcommand = "SELECT [DomainId] FROM [dbo].[Users] WHERE [UserName] = '"+userName+"' and [Password] = '"+password+"'";
