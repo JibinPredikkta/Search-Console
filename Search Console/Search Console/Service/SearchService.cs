@@ -320,18 +320,20 @@ namespace SearchConsoleAPI.Service
                     QueryWiseData1 = dataset.GroupBy(l => l.Date).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Query = cl.First().Query, Date = cl.First().Date}).OrderBy(l => l.Date).ToList();
                     List<SearchConsoleDataSet> dataset1 = context.SearchConsoleDataSets.Where(s => s.Date >= startDate2 && s.Date < endDate2 && s.Query == query && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
                     QueryWiseData2 = dataset1.GroupBy(l => l.Date).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Query = cl.First().Query, Date = cl.First().Date}).OrderBy(l => l.Date).ToList();
-                    foreach (SearchConsoleDataSet item in QueryWiseData1)
-                    {
-                        foreach (SearchConsoleDataSet item1 in QueryWiseData2)
-                        {
-                            if (item.Query == item1.Query)
-                            {
-                                QueryWiseData3.Add(item);
-                                QueryWiseData4.Add(item1);
-                            }
+                    //foreach (SearchConsoleDataSet item in QueryWiseData1)
+                    //{
+                    //    foreach (SearchConsoleDataSet item1 in QueryWiseData2)
+                    //    {
+                    //        if (item.Query == item1.Query)
+                    //        {
+                    //            QueryWiseData3.Add(item);
+                    //            QueryWiseData4.Add(item1);
+                    //        }
 
-                        }
-                    }
+                    //    }
+                    //}
+                    QueryWiseData3 = QueryWiseData1;
+                    QueryWiseData4 = QueryWiseData2;
                 }
                 else
                 {
@@ -485,20 +487,8 @@ namespace SearchConsoleAPI.Service
             try
             {
                 SqlConnection thisConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["SearchConsoleContext"].ConnectionString);
-                    //new SqlConnection(@"Data Source=.\;Initial Catalog=SearchConsole;Integrated Security=True");
-                //thisConnection.Open();
                 password = Users.Encrypt(password);
                 string sqlcommand = "SELECT [DomainId] FROM [dbo].[Users] WHERE [UserName] = '"+userName+"' and [Password] = '"+password+"'";
-                //SqlCommand cmd = new SqlCommand(sqlcommand, thisConnection);
-                //SqlDataReader thisReader = cmd.ExecuteReader();
-                //while (thisReader.Read())
-                //{
-                //     f = "";
-                //}
-                //thisReader.Close();
-                //thisConnection.Close();
-
-
                 SqlDataAdapter adptre = new SqlDataAdapter();
                 DataSet resultSet = new DataSet();
 
@@ -516,7 +506,6 @@ namespace SearchConsoleAPI.Service
 
                 catch (Exception ex)
                 {
-
                 }
                 thisConnection.Close();
 
