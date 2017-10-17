@@ -204,13 +204,13 @@ namespace SearchConsoleAPI.Service
             {
                 if (page != "" && page != null)
                 {
-                    List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate && s.Page == page && s.DomainId == domainID).ToList();
+                    List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate && s.Page == page && s.DomainId == domainID && s.country == "aus").ToList();
                     PageWiseData = dataset.GroupBy(l => l.Date).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Page = cl.First().Page, Date = cl.First().Date }).OrderBy(l =>l.Date).ToList();
 
                 }
                 else
                 {
-                    List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                    List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                     PageWiseData = dataset.GroupBy(l => l.Page).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Page = cl.First().Page }).OrderByDescending(c => c.Clicks).ToList();
                 }
             }
@@ -231,9 +231,9 @@ namespace SearchConsoleAPI.Service
             {
                 if (page != "" && page != null)
                 {
-                    List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate1 && s.Page == page && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                    List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate1 && s.Page == page && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                     PageWiseData1 = dataset.GroupBy(l => l.Date).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Page = cl.First().Page, Date = cl.First().Date }).OrderBy(l => l.Date).ToList();
-                    List<SearchConsoleDataSet> dataset1 = context.SearchConsoleDataSets.Where(s => s.Date >= startDate2 && s.Date < endDate2 && s.Page == page && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                    List<SearchConsoleDataSet> dataset1 = context.SearchConsoleDataSets.Where(s => s.Date >= startDate2 && s.Date < endDate2 && s.Page == page && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                     PageWiseData2 = dataset1.GroupBy(l => l.Date).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Page = cl.First().Page, Date = cl.First().Date }).OrderBy(l => l.Date).ToList();
                     foreach (SearchConsoleDataSet item in PageWiseData1)
                     {
@@ -250,9 +250,9 @@ namespace SearchConsoleAPI.Service
                 }
                 else
                 {
-                    List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate1 && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                    List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate1 && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                     PageWiseData1 = dataset.GroupBy(l => l.Page).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Page = cl.First().Page }).OrderByDescending(c => c.Clicks).ToList();
-                    List<SearchConsoleDataSet> dataset1 = context.SearchConsoleDataSets.Where(s => s.Date >= startDate2 && s.Date < endDate2 && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                    List<SearchConsoleDataSet> dataset1 = context.SearchConsoleDataSets.Where(s => s.Date >= startDate2 && s.Date < endDate2 && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                     PageWiseData2 = dataset1.GroupBy(l => l.Page).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Page = cl.First().Page }).OrderByDescending(c => c.Clicks).ToList();
                     foreach (SearchConsoleDataSet item in PageWiseData1)
                     {
@@ -285,13 +285,13 @@ namespace SearchConsoleAPI.Service
             {
                 if (query != "" && query != null)
                 {
-                    List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate && s.Query == query && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                    List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate && s.Query == query && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                     QueryWiseData = dataset.GroupBy(l => l.Date).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Query = cl.First().Query, Date = cl.First().Date }).OrderBy(l =>l.Date).ToList();
 
                 }
                 else
                 {
-                    List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                    List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                     QueryWiseData = dataset.GroupBy(l => l.Query).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Query = cl.First().Query }).OrderByDescending(c => c.Clicks).ToList();
 
                 }
@@ -316,9 +316,9 @@ namespace SearchConsoleAPI.Service
             {
                 if(query != "" && query != null)
                 {
-                    List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate1 && s.Query == query && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                    List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate1 && s.Query == query && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                     QueryWiseData1 = dataset.GroupBy(l => l.Date).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Query = cl.First().Query, Date = cl.First().Date}).OrderBy(l => l.Date).ToList();
-                    List<SearchConsoleDataSet> dataset1 = context.SearchConsoleDataSets.Where(s => s.Date >= startDate2 && s.Date < endDate2 && s.Query == query && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                    List<SearchConsoleDataSet> dataset1 = context.SearchConsoleDataSets.Where(s => s.Date >= startDate2 && s.Date < endDate2 && s.Query == query && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                     QueryWiseData2 = dataset1.GroupBy(l => l.Date).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Query = cl.First().Query, Date = cl.First().Date}).OrderBy(l => l.Date).ToList();
                     //foreach (SearchConsoleDataSet item in QueryWiseData1)
                     //{
@@ -337,9 +337,9 @@ namespace SearchConsoleAPI.Service
                 }
                 else
                 {
-                    List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate1 && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                    List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate1 && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                     QueryWiseData1 = dataset.GroupBy(l => l.Query).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Query = cl.First().Query }).OrderByDescending(c => c.Clicks).ToList(); 
-                    List<SearchConsoleDataSet> dataset1 = context.SearchConsoleDataSets.Where(s => s.Date >= startDate2 && s.Date < endDate2 && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                    List<SearchConsoleDataSet> dataset1 = context.SearchConsoleDataSets.Where(s => s.Date >= startDate2 && s.Date < endDate2 && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                     QueryWiseData2 = dataset1.GroupBy(l => l.Query).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Query = cl.First().Query }).OrderByDescending(c => c.Clicks).ToList();
                     foreach (SearchConsoleDataSet item in QueryWiseData1)
                     {
@@ -372,8 +372,8 @@ namespace SearchConsoleAPI.Service
             SearchConsoleDataSet lastDate = new SearchConsoleDataSet();
             if (context != null)
             {
-                firstDate = context.SearchConsoleDataSets.Where(s => s.DomainId == domainID).OrderBy(l => l.Date).FirstOrDefault();
-                lastDate = context.SearchConsoleDataSets.Where(s => s.DomainId == domainID).OrderByDescending(l => l.Date).FirstOrDefault();
+                firstDate = context.SearchConsoleDataSets.Where(s => s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).FirstOrDefault();
+                lastDate = context.SearchConsoleDataSets.Where(s => s.DomainId == domainID && s.country == "aus").OrderByDescending(l => l.Date).FirstOrDefault();
 
             }
             res.Add(firstDate);
@@ -388,7 +388,7 @@ namespace SearchConsoleAPI.Service
             List<SearchConsoleDataSet> DateWiseData = new List<SearchConsoleDataSet>();
             if (context != null)
             {
-                List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                 DateWiseData = dataset.GroupBy(l => l.Date).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Date = cl.First().Date }).ToList();
 
             }
@@ -406,9 +406,9 @@ namespace SearchConsoleAPI.Service
             List<List<SearchConsoleDataSet>> res = new List<List<SearchConsoleDataSet>>();
             if (context != null)
             {
-                List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate1 && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate1 && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                 QueryWiseData1 = dataset.GroupBy(l => l.Date).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Date = cl.First().Date }).ToList();
-                List<SearchConsoleDataSet> dataset1 = context.SearchConsoleDataSets.Where(s => s.Date >= startDate2 && s.Date < endDate2 && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                List<SearchConsoleDataSet> dataset1 = context.SearchConsoleDataSets.Where(s => s.Date >= startDate2 && s.Date < endDate2 && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                 QueryWiseData2 = dataset1.GroupBy(l => l.Date).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), Date = cl.First().Date }).ToList();
                 //foreach (SearchConsoleDataSet item in QueryWiseData1)
                 //{
@@ -437,7 +437,7 @@ namespace SearchConsoleAPI.Service
             List<SearchConsoleDataSet> DeviceWiseData = new List<SearchConsoleDataSet>();
             if (context != null)
             {
-                List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                 DeviceWiseData = dataset.GroupBy(l => l.DeviceType).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), DeviceType = cl.First().DeviceType }).OrderByDescending(c => c.Clicks).ToList();
 
             }
@@ -456,9 +456,9 @@ namespace SearchConsoleAPI.Service
             List<List<SearchConsoleDataSet>> res = new List<List<SearchConsoleDataSet>>();
             if (context != null)
             {
-                List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate1 && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                List<SearchConsoleDataSet> dataset = context.SearchConsoleDataSets.Where(s => s.Date >= sDate && s.Date < endDate1 && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                 QueryWiseData1 = dataset.GroupBy(l => l.DeviceType).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), DeviceType = cl.First().DeviceType }).OrderByDescending(c => c.Clicks).ToList();
-                List<SearchConsoleDataSet> dataset1 = context.SearchConsoleDataSets.Where(s => s.Date >= startDate2 && s.Date < endDate2 && s.DomainId == domainID).OrderBy(l => l.Date).ToList();
+                List<SearchConsoleDataSet> dataset1 = context.SearchConsoleDataSets.Where(s => s.Date >= startDate2 && s.Date < endDate2 && s.DomainId == domainID && s.country == "aus").OrderBy(l => l.Date).ToList();
                 QueryWiseData2 = dataset1.GroupBy(l => l.DeviceType).Select(cl => new SearchConsoleDataSet { Clicks = cl.Sum(c => c.Clicks), Impressions = cl.Sum(d => d.Impressions), CTR = cl.Sum(c => c.Clicks) / cl.Sum(d => d.Impressions), Position = cl.Average(f => f.Position), DeviceType = cl.First().DeviceType }).OrderByDescending(c => c.Clicks).ToList();
                 foreach (SearchConsoleDataSet item in QueryWiseData1)
                 {

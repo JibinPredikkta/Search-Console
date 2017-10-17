@@ -46,4 +46,3 @@ D:\Search Console (2)\Search Console\SearchConsoleDAL\bin\Debug\EntityFramework.
 D:\Search Console (2)\Search Console\SearchConsoleDAL\bin\Debug\EntityFramework.SqlServer.xml
 D:\Search Console (2)\Search Console\SearchConsoleDAL\obj\Debug\SearchConsoleDAL.dll
 D:\Search Console (2)\Search Console\SearchConsoleDAL\obj\Debug\SearchConsoleDAL.pdb
-D:\Search Console (2)\Search Console\SearchConsoleDAL\obj\Debug\SearchConsoleDAL.csprojResolveAssemblyReference.cache
